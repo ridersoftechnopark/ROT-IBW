@@ -22,6 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+package-lock.json
 
 # Large video files
 src/assets/hero-video.mp4
