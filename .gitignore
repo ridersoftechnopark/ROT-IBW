@@ -25,5 +25,4 @@ dist-ssr
 package-lock.json
 
 # Large video files
-src/assets/hero-video.mp4
 src/assets/video_crop/
