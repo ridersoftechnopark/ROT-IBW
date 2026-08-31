@@ -37,12 +37,6 @@ const EXPERIENCES = [
   { id: 10, title: 'Overlanding Sessions', desc: 'Legendary global overlanders share their stories of grit and glory.', img: 'https://indiabikeweek.in/wp-content/themes/ibw26/assets/img/exp-rides.jpg' },
 ];
 
-const LINEUP = [
-  { id: 1, name: 'Indie & Rock', genre: 'Live Music', stage: 'Stage 1' },
-  { id: 2, name: 'Hip-Hop', genre: 'Live Music', stage: 'Stage 2' },
-  { id: 3, name: 'Electronic', genre: 'Late-Night', stage: 'Stage 3' },
-  { id: 4, name: 'The Big Trip', genre: 'Storytelling', stage: 'Stage 4' },
-];
 
 const FAQS = [
   { q: 'Where is India Bike Week 2026 happening?', a: 'IBW 2026 will be held in Panchgani, Maharashtra at 4,550 ft altitude (~4 hrs from Mumbai, ~2.5 hrs from Pune).' },
@@ -258,24 +252,44 @@ const Experiences = () => {
           <h3 className="text-4xl md:text-5xl text-white font-display uppercase tracking-tight">Madness Guaranteed</h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {EXPERIENCES.map((exp, i) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-xl mb-6">
-                <img src={exp.img} alt={exp.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-              <h4 className="text-2xl text-white font-display uppercase tracking-wide mb-3">{exp.title}</h4>
-              <p className="text-white/60 font-montserrat leading-relaxed">{exp.desc}</p>
-            </motion.div>
-          ))}
+        <div className="flex overflow-hidden group -mx-6 lg:-mx-8">
+          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+            
+            {/* First Set */}
+            <div className="flex gap-6 px-3">
+              {EXPERIENCES.map((exp, i) => (
+                <div
+                  key={`set1-${exp.id}-${i}`}
+                  className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] xl:w-[380px] cursor-pointer"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl mb-6 group/card">
+                    <img src={exp.img} alt={exp.title} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/20 group-hover/card:bg-transparent transition-colors duration-500 pointer-events-none" />
+                  </div>
+                  <h4 className="text-2xl text-white font-display uppercase tracking-wide mb-3">{exp.title}</h4>
+                  <p className="text-white/60 font-montserrat leading-relaxed">{exp.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Second Set */}
+            <div className="flex gap-6 px-3">
+              {EXPERIENCES.map((exp, i) => (
+                <div
+                  key={`set2-${exp.id}-${i}`}
+                  className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] xl:w-[380px] cursor-pointer"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl mb-6 group/card">
+                    <img src={exp.img} alt={exp.title} className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110 pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/20 group-hover/card:bg-transparent transition-colors duration-500 pointer-events-none" />
+                  </div>
+                  <h4 className="text-2xl text-white font-display uppercase tracking-wide mb-3">{exp.title}</h4>
+                  <p className="text-white/60 font-montserrat leading-relaxed">{exp.desc}</p>
+                </div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
@@ -357,49 +371,6 @@ const CountdownBanner = () => {
   );
 };
 
-// ----------------------------------------------------------------------
-// LINEUP
-// ----------------------------------------------------------------------
-
-const Lineup = () => {
-  return (
-    <section id="lineup" className="py-24 md:py-40 bg-brand-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 md:mb-24"
-        >
-          <h2 className="text-brand-red text-sm tracking-[0.2em] uppercase font-bold mb-4">Music & Talks</h2>
-          <h3 className="text-4xl md:text-5xl text-white font-display uppercase tracking-tight">The Lineup</h3>
-        </motion.div>
-
-        <div className="flex flex-col border-t border-white/10">
-          {LINEUP.map((act, i) => (
-            <motion.div
-              key={act.id}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-8 border-b border-white/10 group hover:bg-white/5 px-4 transition-colors cursor-default"
-            >
-              <h4 className="text-3xl md:text-4xl text-white font-display uppercase tracking-tight group-hover:text-brand-red transition-colors mb-2 sm:mb-0">
-                {act.name}
-              </h4>
-              <div className="flex items-center gap-6">
-                <span className="text-white/40 font-montserrat uppercase tracking-widest text-sm">{act.genre}</span>
-                <span className="px-4 py-1.5 rounded-full border border-white/20 text-white text-xs uppercase tracking-widest">{act.stage}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // ----------------------------------------------------------------------
 // CLUB ADVANTAGE
@@ -707,7 +678,6 @@ const Footer = () => {
                 <li><a href="#home" className="text-white/60 hover:text-white transition-colors">The New Home</a></li>
                 <li><a href="#experiences" className="text-white/60 hover:text-white transition-colors">Experiences</a></li>
                 <li><a href="#races" className="text-white/60 hover:text-white transition-colors">Races</a></li>
-                <li><a href="#lineup" className="text-white/60 hover:text-white transition-colors">Lineup</a></li>
                 <li><a href="#faq" className="text-white/60 hover:text-white transition-colors">FAQ</a></li>
               </ul>
             </div>
@@ -754,6 +724,7 @@ const YoutubeIcon = ({ className }: { className?: string }) => (
     <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
   </svg>
 );
+
 // ----------------------------------------------------------------------
 // MAIN APP
 // ----------------------------------------------------------------------
@@ -766,7 +737,6 @@ function App() {
       <CountdownBanner />
       <TheNewHome />
       <Experiences />
-      <Lineup />
       <ClubAdvantage />
       <RouteSchedule />
       <BookingForm />
